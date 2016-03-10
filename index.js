@@ -1,25 +1,38 @@
 $(document).ready(function(){
-
-
-  var test;
-  $.getJSON("data/Namu_data.json",function(data){
-    //$("body").append(data[0]);
-    var tmp = '';
-
-for (var items in data){
-    if(data[items].length>1){
-        $("#test").append(items.No);
-    }else{
-        var key = items;
-        var keyValue = data[items].toString();
-
-        if(keyValue.substr(0,8) != 'function'){ //function은 무시
-            tmp += '\n' + key +'  '+ keyValue;
-        }
+  
+/*
+  $.getJSON("data/Namuami.json",function(data){
+    for (var item in data) {
+      var $profile = $('<div id='+'"'+data[item].NameEn+'"'+'>'+
+        '<div class=idol-name NameKo>'+data[item].NameKo+'</div>'+
+        '<div class=idol-name NameJa>'+data[item].NameJa+'</div>'+
+        '<div class=idol-name NameEn>'+data[item].NameEn+'</div>'+
+        '<div class=idol-cv>'+data[item].CV+'</div>'+
+        '</div>');
+      $('#profile-container').append($profile);
     }
-}
-alert(tmp);
-});
-  //console.log(test);
+  });
+  */
 
+/*
+  var data = require('data/Namuami.json');
+  for (var item in data) {
+      var $profile = $('<div id='+'"'+data[item].NameEn+'"'+'>'+
+        '<div class=idol-name NameKo>'+data[item].NameKo+'</div>'+
+        '<div class=idol-name NameJa>'+data[item].NameJa+'</div>'+
+        '<div class=idol-name NameEn>'+data[item].NameEn+'</div>'+
+        '<div class=idol-cv>'+data[item].CV+'</div>'+
+        '</div>');
+      $('#profile-container').append($profile);
+  };
+  */
+ var profiles;
+  $.getJSON("data/Namuami.json").done(function(data){
+     var $test = JSON.stringify(data);
+     profiles = JSON.parse($test);
+       $('#profile-container').append(JSON.stringify(profiles));
+
+  });
+       console.log(typeof profiles)
+  
 });
